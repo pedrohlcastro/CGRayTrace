@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 // Retorna **true** se o objeto tem interseção com o raio ou
 // **false**, do contrário.
@@ -18,6 +19,57 @@ bool Object::intersectsWith(Ray& ray) {
   // Está sempre retornando false, por isso a imagem gerada não tem nada
   // Você deve implementar este método de forma que ele retorne true/false
   // dependendo se o raio acerta ou não a esfera
+	double a,b,c,delta,t1,t2;
+	// a = pow(ray.v.x,2) + pow(ray.v.y,2) + pow(ray.v.z,2);
+	// b = 2*(ray.v.x * ray.p0.x + ray.v.y * ray.p0.y + ray.v.z * ray.p0.z);
+	// c = (pow(ray.p0.x,2) + pow(ray.p0.y,2) + pow(ray.p0.z,2)) - 1;
+	Vector3 p;
+	p.x = this->position.x - ray.p0.x;
+	p.y = this->position.y - ray.p0.y;
+	p.z = this->position.z - ray.p0.z;
+
+
+
+	a = 1;
+	b = -2*(ray.v.dotProduct(p));
+	c = p.dotProduct(p) - pow(this->radius,2);
+
+	delta = pow(b,2) - (4*a*c);
+
+	if(delta < 0){
+		return false;
+	}
+	else{
+		t1 = ((b*-1) + sqrt(delta)) / (2*a);
+		t2 = ((b*-1) - sqrt(delta)) / (2*a);
+
+		if(delta == 0){
+			ray.intersectionT = t1;
+
+
+		}
+		else{
+			(t1>t2) ? ray.intersectionT = t2 : ray.intersectionT = t1;  
+		}
+
+		ray.intersectionPoint.x = ray.p0.x + (ray.v.x * ray.intersectionT);
+		ray.intersectionPoint.y = ray.p0.y + (ray.v.y * ray.intersectionT);
+		ray.intersectionPoint.z = ray.p0.z + (ray.v.z * ray.intersectionT);
+
+		ray.intersectionNormal.x = ray.intersectionPoint.x;
+		ray.intersectionNormal.y = ray.intersectionPoint.y;
+		ray.intersectionNormal.z = ray.intersectionPoint.z;
+		ray.intersectionNormal.normalize();
+
+		if(t1 >= 0 || t2 >= 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+
 
   // Além disso, preencha ray.intersectionPoint e ray.intersectionNormal
   // com o ponto de interseção e a normal do objeto nesse ponto

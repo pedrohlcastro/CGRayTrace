@@ -10,9 +10,12 @@ using namespace std;
 Ray RayTracer::generateInitialRay(Camera& camera, int row, int column, const int height, const int width) {
 	Vector3 gridPointInCameraSpace = Vector3(column - width/2.0f, row - height/2.0f, -1);
 	Ray ray;
-	ray.p0 = camera.eye;
-	ray.v = Vector3(gridPointInCameraSpace.diff(ray.p0));
-	ray.v.normalize();
+	//formula da aula 
+	ray.p0 = camera.eye; //ponto
+	ray.v = Vector3(gridPointInCameraSpace.diff(ray.p0));//vetor direção do raio
+
+	ray.v.normalize(); //normaliza
+	//ja tenho ponto e v...
 	return ray;
 }
 
@@ -36,16 +39,19 @@ Vector3 RayTracer::castRay(Scene& scene, Ray& ray) {
 
 	// Verifica se um objeto foi atingido. Se tiver sido, colore o pixel
 	if (closestObjectHit != NULL) {
+		//cout<<"TE MATEI"<<endl;
 		// material e pigmento deste objeto
 		Material* material= closestObjectHit->material;
 		Pygment* pygment = closestObjectHit->pygment;
 
 		// retorna simplesmente a cor do pigmento (da textura, digamos)
 		return pygment->color1;
+		// return Vector3(0, 1, 0);
+
 	}
 
 	// nada foi atingido. Retorna uma cor padrão (de fundo)
-	return Vector3(0, 0, 1);
+	return Vector3(0, 0, 0);
 }
 
 
