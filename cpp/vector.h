@@ -38,67 +38,68 @@ using namespace std;
 class Vector3 {
 
 public:
-	union {
-		double components[3];
-		struct {
-			double x, y, z;
-		};
-		struct {
-			double r, g, b;
-		};
-	};
+    union {
+        double components[3];
+        struct {
+            double x, y, z;
+        };
+        struct {
+            double r, g, b;
+        };
+    };
 
 
-	// construtores
-	Vector3(double, double, double);
-	Vector3(double[]);
-	Vector3(const Vector3&);
-	Vector3() {}
+    // construtores
+    Vector3(double, double, double);
+    Vector3(double[]);
+    Vector3(const Vector3&);
+    Vector3() {}
 
-	// operações
-	Vector3 add(Vector3&);			// imutável (não altera o Vector3, apenas retorna o resultado)
-	Vector3 add(double);			// imutável
-	Vector3 diff(Vector3&);			// imutável
-	Vector3 diff(double);			// imutável
-	Vector3 mult(double);			// imutável
-	Vector3 cwMult(Vector3);       // imutável
-	Vector3 cross(Vector3&);		// imutável
-	double dotProduct(Vector3&);	// imutável
-	double norm();					// imutável
-	Vector3 normalized();			// imutável
-	void normalize();				// mutável  (altera o Vector3 e não retorna nada)
-	void truncate();				// mutável
+    // operações
+    Vector3 add(Vector3&);			// imutável (não altera o Vector3, apenas retorna o resultado)
+    Vector3 add(double);			// imutável
+    Vector3 diff(Vector3&);			// imutável
+    Vector3 diff(double);			// imutável
+    Vector3 mult(double);			// imutável
+    Vector3 cwMult(Vector3);       // imutável
+    Vector3 cross(Vector3&);		// imutável
+    double dotProduct(Vector3&);	// imutável
+    double norm();					// imutável
+    Vector3 normalized();			// imutável
+    void normalize();				// mutável  (altera o Vector3 e não retorna nada)
+    void truncate();				// mutável
 
-	string printDebugInfo();
+    string printDebugInfo();
+
 };
 
 
 
 class Vector4 {
 public:
-	union {
-		double components[4];
-		struct {
-			double x, y, z, w;
-		};
-		struct {
-			double r, g, b, a;
-		};
-	};
+    union {
+        double components[4];
+        struct {
+            double x, y, z, w;
+        };
+        struct {
+            double r, g, b, a;
+        };
+    };
 
-	// construtores
-	Vector4(double, double, double, double);
-	Vector4(double[]);
-	Vector4() {};
+    // construtores
+    Vector4(double, double, double, double);
+    Vector4(double[]);
+    Vector4() {};
 
-	// operações
-	Vector4 add(Vector4&);			// imutável
-	Vector4 add(double);			// imutável
-	Vector4 diff(Vector4&);			// imutável
-	Vector4 diff(double);			// imutável
-	double dotProduct(Vector4&);	// imutável
-	double norm();					// imutável
-	void normalize();				// mutável
+    // operações
+    Vector4 add(Vector4&);			// imutável
+    Vector4 add(double);			// imutável
+    Vector4 diff(Vector4&);			// imutável
+    Vector4 diff(double);			// imutável
+    double dotProduct(Vector4&);	// imutável
+    double norm();					// imutável
+    void normalize();				// mutável
 };
 
 

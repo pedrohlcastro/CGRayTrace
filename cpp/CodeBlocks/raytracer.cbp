@@ -17,7 +17,9 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
+					<Add library="SOIL" />
 					<Add library="opengl32" />
+					<Add directory="../lib/windows/" />
 				</Linker>
 			</Target>
 			<Target title="Linux">
@@ -31,7 +33,9 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
+					<Add library="SOIL" />
 					<Add library="GL" />
+					<Add directory="../lib/linux/" />
 				</Linker>
 			</Target>
 		</Build>
@@ -41,7 +45,6 @@
 			<Add directory="../include/" />
 		</Compiler>
 		<Linker>
-			<Add library="../lib/libSOIL.a" />
 			<Add directory="../lib/" />
 		</Linker>
 		<Unit filename="../main.cpp" />

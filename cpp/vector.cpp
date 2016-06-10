@@ -20,16 +20,16 @@
 // ...ou com ponteiro:
 //   Vector3* u = new Vector3(0, 0, 0);
 Vector3::Vector3(double x, double y, double z) {
-	this->x = x;
-	this->y = y;
-	this->z = z;
+    this->x = x;
+    this->y = y;
+    this->z = z;
 }
 
 // CONSTRUTOR que recebe um array com 3 doubles
 Vector3::Vector3(double components[3]) {
-	this->components[0] = components[0];
-	this->components[1] = components[1];
-	this->components[2] = components[2];
+    this->components[0] = components[0];
+    this->components[1] = components[1];
+    this->components[2] = components[2];
 }
 
 // CONSTRUTOR que recebe outro Vector3 e cria um clone
@@ -39,9 +39,9 @@ Vector3::Vector3(double components[3]) {
 //
 // Assim, v e u serão vetores com o mesmo (x, y, z)
 Vector3::Vector3(const Vector3& other) {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
+    this->x = other.x;
+    this->y = other.y;
+    this->z = other.z;
 }
 
 
@@ -54,9 +54,9 @@ Vector3::Vector3(const Vector3& other) {
 //
 // Ao final, soma = (15, 25, 35) e a e b continuam sendo (10, 20, 30) e (5, 5, 5) respec.
 Vector3 Vector3::add(Vector3& other) {
-	return Vector3(this->x + other.x,
-				   this->y + other.y,
-				   this->z + other.z);
+    return Vector3(this->x + other.x,
+                   this->y + other.y,
+                   this->z + other.z);
 }
 
 // MÉTODO para adicionar um escalar a cada componente do vetor.
@@ -66,9 +66,9 @@ Vector3 Vector3::add(Vector3& other) {
 //
 // Ao final, resultado = (110, 120, 130) e a continua sendo (10, 20, 30).
 Vector3 Vector3::add(double num) {
-	return Vector3(this->x + num,
-				   this->y + num,
-				   this->z + num);
+    return Vector3(this->x + num,
+                   this->y + num,
+                   this->z + num);
 }
 
 
@@ -80,9 +80,9 @@ Vector3 Vector3::add(double num) {
 //
 // Ao final, resultado = (5, 15, 25) e a e b continuam sendo (10, 20, 30) e (5, 5, 5) respec.
 Vector3 Vector3::diff(Vector3& other) {
-	return Vector3(this->x - other.x,
-				   this->y - other.y,
-				   this->z - other.z);
+    return Vector3(this->x - other.x,
+                   this->y - other.y,
+                   this->z - other.z);
 }
 
 // MÉTODO para subtrair um escalar a cada componente do vetor.
@@ -92,7 +92,7 @@ Vector3 Vector3::diff(Vector3& other) {
 //
 // Ao final, resultado = (0, 10, 20) e a continua sendo (10, 20, 30).
 Vector3 Vector3::diff(double num) {
-	return this->add(-num);
+    return this->add(-num);
 }
 
 // MÉTODO para multiplicar um escalar a cada componente do vetor.
@@ -102,9 +102,9 @@ Vector3 Vector3::diff(double num) {
 //
 // Ao final, resultado = (30, 60, 90) e a continua sendo (10, 20, 30).
 Vector3 Vector3::mult(double num) {
-	return Vector3(this->x * num,
-				   this->y * num,
-				   this->z * num);
+    return Vector3(this->x * num,
+                   this->y * num,
+                   this->z * num);
 }
 
 
@@ -117,9 +117,9 @@ Vector3 Vector3::mult(double num) {
 //
 // Ao final, resultado = (10*2 20*3, 30*4) e a continua sendo (10, 20, 30).
 Vector3 Vector3::cwMult(Vector3 other) {
-	return Vector3(this->x * other.x,
-				   this->y * other.y,
-				   this->z * other.z);
+    return Vector3(this->x * other.x,
+                   this->y * other.y,
+                   this->z * other.z);
 }
 
 // MÉTODO para calcular o produto vetorial entre dois vetores (a x b).
@@ -130,11 +130,11 @@ Vector3 Vector3::cwMult(Vector3 other) {
 //
 // Ao final, resultado = (0, 0, 1) e a e b continuam sendo (1, 0, 0) e (0, 1, 0).
 Vector3 Vector3::cross(Vector3& other) {
-	return Vector3(
-		this->y*other.z - this->z*other.y,
-		this->z*other.x - this->x*other.z,
-		this->x*other.y - this->y*other.x
-	);
+    return Vector3(
+        this->y*other.z - this->z*other.y,
+        this->z*other.x - this->x*other.z,
+        this->x*other.y - this->y*other.x
+    );
 }
 
 // MÉTODO para calcular o produto interno entre dois vetores (a . b).
@@ -145,7 +145,7 @@ Vector3 Vector3::cross(Vector3& other) {
 //
 // Ao final, resultado = 0.
 double Vector3::dotProduct(Vector3& other) {
-	return this->x*other.x + this->y*other.y + this->z*other.z;
+    return this->x*other.x + this->y*other.y + this->z*other.z;
 }
 
 // MÉTODO para calcular a norma do vetor.
@@ -155,7 +155,7 @@ double Vector3::dotProduct(Vector3& other) {
 //
 // Ao final, tamanho = 3.
 double Vector3::norm() {
-	return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2));
+    return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2));
 }
 
 // MÉTODO que ALTERA o vetor para sua forma normalizada (tamanho=1).
@@ -165,12 +165,12 @@ double Vector3::norm() {
 //
 // Ao final, a = (1, 0, 0).
 void Vector3::normalize() {
-	double norm = this->norm();
-	if (norm != 0) {
+    double norm = this->norm();
+    if (norm != 0) {
         this->x /= norm;
         this->y /= norm;
         this->z /= norm;
-	}
+    }
 }
 
 
@@ -181,9 +181,9 @@ void Vector3::normalize() {
 //
 // Ao final, aNormalizado = (1, 0, 0), mas a continua sendo (9, 0, 0).
 Vector3 Vector3::normalized() {
-	Vector3 normalized = Vector3(*this);
-	normalized.normalize();
-	return normalized;
+    Vector3 normalized = Vector3(*this);
+    normalized.normalize();
+    return normalized;
 }
 
 // MÉTODO que ALTERA o vetor, fazendo suas componentes (x,y,z) serem truncadas entre 0 e 1.
@@ -193,17 +193,17 @@ Vector3 Vector3::normalized() {
 //
 // Ao final, a = (1, -1, 0.25f).
 void Vector3::truncate() {
-	this->x = fmin(1.0f, fmax(0, this->x));
-	this->y = fmin(1.0f, fmax(0, this->y));
-	this->z = fmin(1.0f, fmax(0, this->z));
+    this->x = fmin(1.0f, fmax(0, this->x));
+    this->y = fmin(1.0f, fmax(0, this->y));
+    this->z = fmin(1.0f, fmax(0, this->z));
 }
 
 
 
 string Vector3::printDebugInfo() {
-	ostringstream result;
-	result << "(" << this->x << ", " << this->y << ", " << this->z << ") ";
-	return result.str();
+    ostringstream result;
+    result << "(" << this->x << ", " << this->y << ", " << this->z << ") ";
+    return result.str();
 }
 
 
@@ -217,57 +217,57 @@ string Vector3::printDebugInfo() {
  * Eles são 100% análogos aos métodos da classe Vector3.
  */
 Vector4::Vector4(double x, double y, double z, double w) {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->w = w;
+    this->x = x;
+    this->y = y;
+    this->z = z;
+    this->w = w;
 }
 
 Vector4::Vector4(double components[4]) {
-	this->components[0] = components[0];
-	this->components[1] = components[1];
-	this->components[2] = components[2];
-	this->components[3] = components[3];
+    this->components[0] = components[0];
+    this->components[1] = components[1];
+    this->components[2] = components[2];
+    this->components[3] = components[3];
 }
 
 Vector4 Vector4::add(Vector4& other) {
-	return Vector4(this->x + other.x,
-				   this->y + other.y,
-				   this->z + other.z,
-				   this->w + other.w);
+    return Vector4(this->x + other.x,
+                   this->y + other.y,
+                   this->z + other.z,
+                   this->w + other.w);
 }
 
 Vector4 Vector4::add(double num) {
-	return Vector4(this->x + num,
-				   this->y + num,
-				   this->z + num,
-				   this->w + num);
+    return Vector4(this->x + num,
+                   this->y + num,
+                   this->z + num,
+                   this->w + num);
 }
 
 Vector4 Vector4::diff(Vector4& other) {
-	return Vector4(this->x - other.x,
-				   this->y - other.y,
-				   this->z - other.z,
-				   this->w - other.w);
+    return Vector4(this->x - other.x,
+                   this->y - other.y,
+                   this->z - other.z,
+                   this->w - other.w);
 }
 
 Vector4 Vector4::diff(double num) {
-	return this->add(-num);
+    return this->add(-num);
 }
 
 double Vector4::dotProduct(Vector4& other) {
-	return this->x*other.x + this->y*other.y + this->z*other.z + this->w*other.w;
+    return this->x*other.x + this->y*other.y + this->z*other.z + this->w*other.w;
 }
 
 double Vector4::norm() {
-	return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2) + pow(this->w, 2));
+    return sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2) + pow(this->w, 2));
 }
 
 void Vector4::normalize() {
-	double norm = this->norm();
-	this->x /= norm;
-	this->y /= norm;
-	this->z /= norm;
-	this->w /= norm;
+    double norm = this->norm();
+    this->x /= norm;
+    this->y /= norm;
+    this->z /= norm;
+    this->w /= norm;
 }
 

@@ -12,11 +12,11 @@ int writeImagePpm(const char* filename, int width, int height, unsigned char *bu
 #include <SOIL.h>
 int writeImageBmp(const char* filename, int width, int height, unsigned char* buffer) {
     return SOIL_save_image
-	(
-		filename,
-		SOIL_SAVE_TYPE_BMP,
-		width, height, 3,
-		buffer
-	);
+    (
+        filename,
+        SOIL_SAVE_TYPE_BMP,
+        width, height, 3,
+        buffer
+    );
 }
 
