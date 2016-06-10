@@ -91,19 +91,14 @@ Vector3 RayTracer::castRay(Scene& scene, Ray& ray) {
             // Salve essa informação na variável
             //   hitsAnotherObjectBeforeLight (~10 linhas)
             for(int o = 0; !hitsAnotherObjectBeforeLight && o < scene.numObjs; o++){
-                Object* currentObject = &(scene.objects[c]);
+                Object* currentObject = &(scene.objects[o]);
                 if(currentObject != closestObjectHit){
                     RayResponse novoLancamento = currentObject->intersectsWith(ray);
-                    if(novoLancamento.intersected)
+                    if(novoLancamento.intersected && novoLancamento.intersectionT < distancia){
                         hitsAnotherObjectBeforeLight = true; 
+                    }
                 }
             }
-
-
-
-
-
-
 
 
             Vector3 resultado;
@@ -118,36 +113,25 @@ Vector3 RayTracer::castRay(Scene& scene, Ray& ray) {
                 Vector3 segundaparte; 
                 
                 Vector3 corAtenuacao = light->color;
+
+                //vetor h
                 Vector3 h = salvaDistanciaAteLuz;
                 Vector3 aux = scene.camera.eye.diff(closestIntersection.intersectionPoint);
-                h.add(aux);
+                h = h.add(aux);
                 h.normalize();
 
                
 
                 atenuacao = light->constantAttenuation + (light->linearAttenuation*distancia) + (light->quadraticAttenuation * distancia * distancia);
-                corAtenuacao.mult(1/atenuacao);
+                corAtenuacao = corAtenuacao.mult(1/atenuacao);
                 auxilar = NovoRaio.v.dotProduct(closestIntersection.intersectionNormal);
                 segundaparte = pygment->color1.mult(material->diffuseCoefficient * (double)fmax(0,auxilar));
-                segundaparte.add(material->specularCoefficient * pow(fmax(0,closestIntersection.intersectionNormal.dotProduct(h)),material->specularExponent));
+                segundaparte = segundaparte.add(material->specularCoefficient * pow(fmax(0,closestIntersection.intersectionNormal.dotProduct(h)),material->specularExponent));
 
                 resultado = corAtenuacao.cwMult(segundaparte);
 
                 
                 shadingColor = shadingColor.add(resultado);
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
             
         }
